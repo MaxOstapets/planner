@@ -1,1 +1,0 @@
-export {Hat} from "./index.jsx"
