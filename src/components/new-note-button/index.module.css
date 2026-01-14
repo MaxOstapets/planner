@@ -1,0 +1,25 @@
+.newNote {
+    background: var(--primary-color-700);
+    padding: 20px;
+    width: 432px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: -6px 6px 4px rgba(0, 0, 2, 25%);
+    border-radius: 13px;
+    border: none;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.text {
+    font-family: var(--primary-font-family);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--neutral-color-white);
+}
+
+.newNote:hover {
+    scale: 1.05;
+    background: var(--primary-color-800);
+}
