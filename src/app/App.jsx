@@ -5,8 +5,10 @@ function App() {
   return (
     <>
       <Hat />
-      <NewNoteButton />
-      <Widget />
+      <main>
+        <Widget />
+        <NewNoteButton />
+      </main>
     </>
   )
 }
