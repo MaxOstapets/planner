@@ -1,0 +1,69 @@
+.card {
+    width: 432px;
+    padding: 30px;
+    gap: 45px;
+    background: var(--primary-color-500);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 14px;
+    box-shadow: -6px -6px 20px rgba(5, 5, 5, 20%), 6px 6px 20px rgba(5, 5, 5, 20%);
+}
+
+.hat {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+    width: 100%;
+}
+
+.title {
+    font-family: var(--secondary-font-family);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--neutral-color-white);
+    padding: 10px;
+    border-radius: 6px;
+    background: var(--primary-color-800);
+}
+
+.level {
+    font-family: var(--primary-font-family);
+    font-size: 15px;
+    font-weight: medium;
+    color: var(--neutral-color-white);
+    background: var(--primary-color-700);
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.noteDescription {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.description {
+    padding: 10px;
+    border-radius: 7px;
+    background: var(--primary-color-700);
+    color: var(--neutral-color-white);
+    font-family: var(--primary-font-family);
+    font-size: 17px;
+    font-weight: medium;
+    line-height: 21px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+    width: 100%;
+}
+
+.complete {
+    grid-column: 1/3;
+}

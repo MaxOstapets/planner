@@ -1,0 +1,18 @@
+.action {
+    font-family: var(--primary-font-family);
+    font-size: 20px;
+    font-weight: bold;
+    background: var(--primary-color-600);
+    color: var(--neutral-color-white);
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 20px 0;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.action:hover {
+    scale: 1.01;
+    background: var(--primary-color-700);
+}
