@@ -1,0 +1,21 @@
+.button {
+    padding: 10px;
+    gap: 10px;
+    font-family: var(--secondary-font-family);
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--neutral-color-white);
+    background: var(--primary-color-800);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: none;
+    transition: .1s;
+    cursor: pointer;
+}
+
+.button:hover {
+    scale: 1.02;
+    background: var(--primary-color-900);
+}
