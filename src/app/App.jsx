@@ -1,5 +1,5 @@
 import './App.css';
-import { Hat, NewNoteButton, Widget } from '../components';
+import { Hat, NewNoteButton, Widget, NoteCard } from '../components';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <main>
         <Widget />
         <NewNoteButton />
+        <NoteCard />
       </main>
     </>
   )
