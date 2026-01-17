@@ -2,11 +2,14 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 
+dotenv.config()
+
 const app = express()
+const DB_URL = process.env.DB_URL as string
 
 async function dbConnect() {
     try {
-        await mongoose.connect("mongodb+srv://maksostapets2007_db_user:5QqYXK1sO331Cv1q@notes.j7gdmj4.mongodb.net/?appName=notes")
+        await mongoose.connect(DB_URL)
         console.log("MONGO IS CONNECTED")
     } catch (e: any) {
         console.log("ERROR:", e.message)
