@@ -4,29 +4,39 @@ import { Note } from "../models/note.model";
 
 const noteRouter = Router()
 
-noteRouter.get("/allNotes", async (req, res) => {
+noteRouter.get("/all", async (req, res) => {
     const notes = await Note.find()
     return res.send(notes)
 })
 
-noteRouter.post("/newNote", async (req, res) => {
+noteRouter.post("/new", async (req, res) => {
     const { title, level, description, listTitle, list } = req.body
     try {
         const result = await noteCreateService({ title, level, description, listTitle, list })
         res.send(result)
-    } catch (e: any) {
-        res.redirect("/newNote")
+    } catch {
+        res.redirect("/new")
         throw new Error("NOTE ERROR")
     }
 })
 
-noteRouter.delete("/deleteNote/:_id", async (req, res) => {
+noteRouter.delete("/delete/:_id", async (req, res) => {
     try {
         const { _id } = req.params
         const deletedNote = await Note.findByIdAndDelete(_id)
         res.json(`NOTE ${deletedNote} DELETED`)
-    } catch (e) {
+    } catch {
         throw new Error("DELETE ERROR")
+    }
+})
+
+noteRouter.patch("/edit/:_id", async (req, res) => {
+    try {
+        const { _id } = req.params
+        const editedNote = await Note.updateOne({ _id }, { $set: { title: "Шось придумати edited" } })
+        res.json(editedNote)
+    } catch {
+        throw new Error("EDIT ERROR")
     }
 })
 
