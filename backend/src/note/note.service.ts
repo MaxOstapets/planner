@@ -4,7 +4,7 @@ interface INote {
     title: string
     level: string
     description: string
-    listTite: string
+    listTitle: string
     list: string[]
 }
 

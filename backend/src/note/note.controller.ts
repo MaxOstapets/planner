@@ -10,13 +10,23 @@ noteRouter.get("/allNotes", async (req, res) => {
 })
 
 noteRouter.post("/newNote", async (req, res) => {
-    const { title, level, description, listTite, list } = req.body
+    const { title, level, description, listTitle, list } = req.body
     try {
-        const result = await noteCreateService({ title, level, description, listTite, list })
+        const result = await noteCreateService({ title, level, description, listTitle, list })
         res.send(result)
     } catch (e: any) {
-        console.log("NOTE ERROR:", e.message)
         res.redirect("/newNote")
+        throw new Error("NOTE ERROR")
+    }
+})
+
+noteRouter.delete("/deleteNote/:_id", async (req, res) => {
+    try {
+        const { _id } = req.params
+        const deletedNote = await Note.findByIdAndDelete(_id)
+        res.json(`NOTE ${deletedNote} DELETED`)
+    } catch (e) {
+        throw new Error("DELETE ERROR")
     }
 })
 
