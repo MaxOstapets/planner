@@ -2,12 +2,19 @@ import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import { noteRouter } from "./note/note.controller"
+import cors from "cors"
 
 dotenv.config()
 
 const app = express()
 const DB_URL = process.env.DB_URL as string
 const PORT = process.env.PORT
+
+app.use(cors({
+    origin: "http://localhost:3001",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}))
 
 async function dbConnect() {
     try {
