@@ -28,6 +28,7 @@ function App() {
               description={el.description}
               listTitle={el.listTitle}
               list={el.list}
+              key={el._id}
             />)}
         </div>
         {widget && <Widget />}

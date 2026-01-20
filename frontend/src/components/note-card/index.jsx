@@ -14,7 +14,7 @@ export const NoteCard = ({ title, level, description, listTitle, list }) => {
                 <div className={s.points}>
                     <p className={s.listTytle}>{listTitle}</p>
                     <ol className={s.list}>
-                        {list.map((el => <li className={s.item}>{el}</li>))}
+                        {list.map((el => <li className={s.item} key={el}>{el}</li>))}
                     </ol>
                 </div>
                 <div className={s.buttons}>
