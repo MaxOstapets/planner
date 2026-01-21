@@ -3,6 +3,8 @@ import { Button } from "./button"
 // import { Points } from "./points"
 
 export const NoteCard = ({ title, level, description, listTitle, list }) => {
+
+
     return (
         <div className={s.card}>
             <section className={s.hat}>

@@ -2,6 +2,7 @@ import s from "./index.module.css"
 import { ActionButton } from "./action-button"
 import { useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { create } from "../../api/create.js"
 
 export const Widget = ({ onClose }) => {
     const queryClient = useQueryClient()
@@ -14,19 +15,7 @@ export const Widget = ({ onClose }) => {
     const handlerSetItems = () => { setItems(prev => [...prev, { text: "" }]) }
 
     const createNote = useMutation({
-        mutationFn: async () => {
-            await fetch("http://localhost:3000/notes/new", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    title,
-                    level,
-                    description,
-                    listTitle,
-                    list: items.map(i => i.text),
-                }),
-            })
-        },
+        mutationFn: async () => { return await create(title, level, description, listTitle, items.map(i => i.text)) },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["notes"] })
             onClose?.()
