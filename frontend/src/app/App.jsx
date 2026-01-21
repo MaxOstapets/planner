@@ -1,20 +1,22 @@
 import './App.css';
 import { Hat, NewNoteButton, Widget, NoteCard } from '../components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchNotes = async () => {
+  const res = await fetch("http://localhost:3000/notes/all")
+  if (!res.ok) throw new Error("Fetch error")
+  return res.json()
+}
 
 function App() {
   const [widget, setWidget] = useState(false)
-  const [notes, setNotes] = useState([])
   const handlerSetWidget = () => (setWidget(true), console.log("WIDGET STATE:", widget))
 
-  useEffect(() => {
-    fetch("http://localhost:3000/notes/all")
-      .then(res => res.json())
-      .then(data => {
-        setNotes(data)
-        console.log(data)
-      })
-  }, [])
+  const { data: notes = [] } = useQuery({
+    queryKey: ["notes"],
+    queryFn: fetchNotes,
+  })
 
   return (
     <>

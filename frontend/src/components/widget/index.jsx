@@ -1,8 +1,10 @@
 import s from "./index.module.css"
 import { ActionButton } from "./action-button"
 import { useState } from "react"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-export const Widget = () => {
+export const Widget = ({ onClose }) => {
+    const queryClient = useQueryClient()
     const [items, setItems] = useState([])
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -11,19 +13,25 @@ export const Widget = () => {
 
     const handlerSetItems = () => { setItems(prev => [...prev, { text: "" }]) }
 
-    const save = async () => {
-        await fetch("http://localhost:3000/notes/new", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                title: title,
-                level: level,
-                description: description,
-                listTitle: listTitle,
-                list: items.map(i => i.text)
+    const createNote = useMutation({
+        mutationFn: async () => {
+            await fetch("http://localhost:3000/notes/new", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    title,
+                    level,
+                    description,
+                    listTitle,
+                    list: items.map(i => i.text),
+                }),
             })
-        })
-    }
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["notes"] })
+            onClose?.()
+        },
+    })
 
     return (
         <div className={s.widget}>
@@ -57,7 +65,7 @@ export const Widget = () => {
                 </div>
                 <input type="text" className={s.level} placeholder="Рівень важливості" value={level} onChange={(e) => { setLevel(e.target.value) }} />
             </section>
-            <button className={s.save} onClick={save}>Зберегти</button>
+            <button className={s.save} onClick={() => createNote.mutate()} disabled={createNote.isPending}>{createNote.isPending ? "Збереження..." : "Зберегти"}</button>
         </div>
     )
 }

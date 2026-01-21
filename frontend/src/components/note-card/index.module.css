@@ -1,6 +1,7 @@
 .card {
     width: 432px;
     padding: 30px;
+    height: fit-content;
     gap: 45px;
     background: var(--primary-color-500);
     display: flex;
