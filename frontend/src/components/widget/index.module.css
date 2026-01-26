@@ -127,3 +127,19 @@ textarea:focus {
     width: 521px;
     font-size: 19px;
 }
+
+.addItem {
+    padding: 10px;
+    background: var(--primary-color-700);
+    color: var(--neutral-color-white);
+    border: none;
+    border-radius: 7px;
+    margin-block: 0;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.addItem:hover {
+    scale: 1.05;
+    background: var(--primary-color-600);
+}
