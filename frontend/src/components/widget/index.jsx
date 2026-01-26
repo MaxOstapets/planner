@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { create } from "../../api/create.js"
 
-export const Widget = ({ onClose }) => {
+export const Widget = ({ onClose, setExit }) => {
     const queryClient = useQueryClient()
     const [items, setItems] = useState([])
     const [title, setTitle] = useState("")
@@ -15,7 +15,7 @@ export const Widget = ({ onClose }) => {
     const handlerSetItems = () => { setItems(prev => [...prev, { text: "" }]) }
 
     const createNote = useMutation({
-        mutationFn: async () => { return await create(title, level, description, listTitle, items.map(i => i.text)) },
+        mutationFn: async () => { return await create(title, level, description, listTitle, items.map(i => i.text)), setExit() },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["notes"] })
             onClose?.()

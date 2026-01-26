@@ -5,8 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getNotes } from '../api/getNotes.js';
 
 function App() {
-  const [widget, setWidget] = useState(false)
-  const handlerSetWidget = () => (setWidget(true), console.log("WIDGET STATE:", widget))
+  const [widget, setWidget] = useState()
+  const handlerSetWidget = () => (setWidget(!widget))
 
   const { data: notes = [] } = useQuery({
     queryKey: ["notes"],
@@ -29,7 +29,7 @@ function App() {
               key={el._id}
             />)}
         </div>
-        {widget && <Widget />}
+        {widget && <Widget setExit={() => handlerSetWidget()} />}
         <NewNoteButton onClick={() => handlerSetWidget()} />
       </main>
     </>

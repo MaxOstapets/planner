@@ -2,12 +2,18 @@ import s from "./index.module.css"
 import { Button } from "./button"
 // import { Points } from "./points"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+// import { deleteNote } from "../../api/deleteNote"
 
 export const NoteCard = ({ title, level, description, listTitle, list, id }) => {
     const queryClient = useQueryClient()
 
     const deleteNote = async () => {
         const res = await fetch(`http://localhost:3000/notes/delete/${id}`, { method: "DELETE" })
+        return res.json()
+    }
+
+    const editNote = async () => {
+        const res = await fetch(`http://localhost:3000/notes/edit/${id}`, { method: "PATCH" })
         return res.json()
     }
 
