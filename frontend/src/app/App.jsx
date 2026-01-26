@@ -20,6 +20,7 @@ function App() {
         <div className='notes'>
           {notes.map((el) =>
             <NoteCard
+              id={el._id}
               title={el.title}
               level={el.level}
               description={el.description}

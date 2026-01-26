@@ -45,8 +45,7 @@ export const Widget = ({ onClose }) => {
                                     const updated = [...items]
                                     updated[i].text = e.target.value
                                     setItems(updated)
-                                }}
-                                />
+                                }} />
                             </li>
                         ))}
                     </ul>
