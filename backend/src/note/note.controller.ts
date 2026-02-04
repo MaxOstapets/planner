@@ -30,7 +30,7 @@ noteRouter.delete("/delete/:_id", async (req, res) => {
     }
 })
 
-noteRouter.patch("/edit/:_id", async (req, res) => {
+noteRouter.put("/edit/:_id", async (req, res) => {
     try {
         const { _id } = req.params
         const editedNote = await Note.updateOne({ _id }, { $set: req.body })
